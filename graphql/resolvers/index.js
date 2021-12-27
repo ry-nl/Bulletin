@@ -8,10 +8,12 @@ const followResolvers = require('./follow')
 
 module.exports = {
 	Post: { // any time a query or mutation returns post, will go through post resolver
+		// id: _id => _id,
 		likeCount: parent => parent.likes.length,
 		commentCount: parent => parent.comments.length
 	},
 	User: {
+		// id: _id => _id,
 		followerCount: parent => parent.followers.length,
 		followingCount: parent => parent.following.length
 	},

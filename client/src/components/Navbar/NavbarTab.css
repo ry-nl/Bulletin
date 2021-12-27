@@ -1,0 +1,23 @@
+.navbar-tab {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.navbar-tab:hover {
+    background-color: var(--highlight-color);
+}
+
+.navbar-tab--active {
+    background-color: var(--selected-color);
+}
+
+.navbar-tab > .MuiSvgIcon-root {
+    padding: 15px;
+}
+
+.navbar-tab > h2 {
+    font-weight: 400;
+    font-size: 1rem;
+    margin-right: 20px;
+}

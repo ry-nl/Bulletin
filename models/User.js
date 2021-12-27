@@ -1,4 +1,4 @@
-const {model, Schema} = require('mongoose')
+const { model, Schema } = require('mongoose')
 
 // USER SCHEMA
 
@@ -13,29 +13,30 @@ const userSchema = new Schema({
 	followers: [
 		{
 			type: Schema.Types.ObjectId,
-			ref: 'users'
+			ref: 'User'
 		}
 	],
 	following: [
 		{
 			type: Schema.Types.ObjectId,
-			ref: 'users'
+			ref: 'User'
 		}
 	],
 
 	posts: [
 		{
 			type: Schema.Types.ObjectId,
-			ref: 'posts'
+			ref: 'Post'
 		}
 	],
 	bookmarks: [
 		{
 			type: Schema.Types.ObjectId,
-			ref: 'posts'
+			ref: 'Post'
 		}
 	],
 	createdAt: String,
+	createdOn: String
 })
 
 module.exports = model('User', userSchema)

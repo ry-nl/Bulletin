@@ -1,0 +1,28 @@
+.navbar {
+    position: fixed;
+    left: 0;
+    height: 100vh;
+    width: 20vw;
+    border-right: var(--highlight-color) 1px solid;
+    z-index: 99;
+    background-color: var(--background-color);
+}
+
+.account-tab {
+    display: flex;
+    align-items: center;
+
+    border-bottom: var(--highlight-color) solid 1px;
+
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.account-tab > h2 {
+    font-weight: 300;
+    font-size: 1.25rem;
+}
+
+.user-icon {
+    margin-right: 15px;
+}

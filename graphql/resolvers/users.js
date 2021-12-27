@@ -1,10 +1,11 @@
-const {UserInputError} = require('apollo-server')
+const { UserInputError } = require('apollo-server')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 const {SECRET_KEY} = require('../../config')
 const User = require('../../models/User')
-const {validateRegistration, validateLogin} = require('../../util/validate')
+const { validateRegistration, validateLogin } = require('../../util/validate')
+const { formatAMPM, formatYMD } = require('../../util/time')
 
 // USER QUERY METHODS
 
@@ -42,14 +43,14 @@ module.exports = {
 			const user = await User.findOne({username}) // get user by username
 
 			if(!user) { // if user does not exist throw error
-				errors.login = 'User does not exist'
+				errors.username = 'User does not exist'
 				throw new UserInputError('One or more fields are incorrect', {errors})
 			}
 
 			const comparePW = await bcrypt.compare(password, user.password) // compare hashed passwords
 
 			if(!comparePW) { // if passwords are not the same throw error
-				errors.login = 'Password incorrect'
+				errors.password = 'Password incorrect'
 				throw new UserInputError('One or more fields are incorrect', {errors})
 			}
 
@@ -57,6 +58,7 @@ module.exports = {
 				id: user.id,
 				username: user.username,
 				email: user.email,
+				userPic: user.userPic,
 			}, SECRET_KEY, {expiresIn: '1h'})
 
 			return { // return user info
@@ -71,9 +73,19 @@ module.exports = {
 
 			if(!valid) throw new UserInputError('Errors', {errors}) // if invalid throw error
 
-			const user = await User.findOne({username}) // get user by username
+			const userByEmail = await User.findOne({email})
 
-			if(user) { // if user already exists throw error
+			if(userByEmail) { // if user already exists throw error
+				throw new UserInputError('Email is taken', {
+					errors: {
+						email: 'Email is taken'
+					}
+				})
+			}
+
+			const userByUsername = await User.findOne({username}) // get user by username
+
+			if(userByUsername) { // if user already exists throw error
 				throw new UserInputError('Username is taken', {
 					errors: {
 						username: 'Username is taken'
@@ -86,8 +98,11 @@ module.exports = {
 			const newUser = new User({ // create a new user object
 				username: username,
 				password: password,
+				userPic: '',
+				userBio: '',
 				email: email,
-				createdAt: new Date().toISOString()
+				createdAt: formatAMPM(new Date()),
+				createdOn: formatYMD(new Date())
 			})
 
 			const added = await newUser.save() // save user to database
@@ -96,6 +111,7 @@ module.exports = {
 				id: added.id,
 				username: added.username,
 				email: added.email,
+				userPic: added.userPic,
 			}, SECRET_KEY, {expiresIn: '1h'})
 
 			return { // return user info

@@ -16,9 +16,10 @@ const validateRegistration = (username, email, password, cPassword) => { // VALI
 		if(!email.match(emailRE)) errors.email = 'Please enter a valid email'
 	}
 
-	if(password.trim() === '' || cPassword.trim() === '') errors.password = 'Password field is required' // check if password field is empty
+	if(password.trim() === '') errors.password = 'Password field is required' // check if password field is empty
+	if(cPassword.trim() === '') errors.cPassword = 'Confirm password field is required' // check if password field is empty
 	else if(password.trim().length < 5) errors.password = 'Password must be at least 5 characters in length' // check if too short
-	else if(password !== cPassword) errors.password = 'Passwords must match' // check if passwords match
+	if(password !== cPassword) errors.cPassword = 'Passwords must match' // check if passwords match
 
 	return {errors, valid: Object.keys(errors).length < 1} // return errors and valid bool
 }

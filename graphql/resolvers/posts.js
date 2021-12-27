@@ -1,8 +1,9 @@
-const {AuthenticationError, UserInputError} = require('apollo-server')
+const { AuthenticationError, UserInputError } = require('apollo-server')
 
 const User = require('../../models/User')
 const Post = require('../../models/Post')
 const authenticate = require('../../util/authenticate')
+const { formatAMPM, formatYMD } = require('../../util/time')
 
 // POST QUERY METHODS
 
@@ -10,7 +11,7 @@ module.exports = {
 	Query: {
 		async getPosts() { // GET ALL POSTS
 			try {
-				const posts = await Post.find() // get all existing posts from database
+				const posts = await Post.find().populate('poster') // get all existing posts from database
 				return posts // return all posts
 			}
 			catch(err) { // handle exception
@@ -18,9 +19,25 @@ module.exports = {
 			}
 		},
 
+		async getUserFeedPosts(parent, { quantity, startingIndex }, context, info) {
+			const { id } = authenticate(context)
+			try {
+				const user = await User.findById(id)
+
+				if(!user) throw new Error('User not found')
+
+				const posts = await Post.find({posterId: {$in: user.following}}).populate('poster')
+
+				return posts.slice(startingIndex, startingIndex + quantity)
+			}
+			catch(err) {
+				throw new Error(err)
+			}
+		},
+
 		async getPost(parent, { postId }, context, info) { // GET ONE POST
 			try {
-				const post = await Post.findById(postId) // get post by id
+				const post = await Post.findById(postId).populate('poster') // get post by id
 
 				if(post) return post // return post if it exists
 				else throw new Error('Post not found') // throw error if post does not exist
@@ -51,11 +68,9 @@ module.exports = {
 
 				const newPost = new Post({ // create a new post object
 					content: {text: text, image: image},
-					posterId: id,
-					poster: username,
-					comments: [],
-					likes: [],
-					createdAt: new Date().toISOString()
+					poster: user,
+					createdAt: formatAMPM(new Date()),
+					createdOn: formatYMD(new Date())
 				})
 
 				user.posts.unshift(newPost)
@@ -80,12 +95,12 @@ module.exports = {
 
 			try {
 				const user = await User.findById(id)
-				const post = await Post.findById(postId) // get post by id
+				const post = await Post.findById(postId).populate('poster') // get post by id
 
 				if(!user) throw new Error('Poster not found')
 				if(!post) throw new Error('Post not found') // throw error if post does not exist
 
-				if(id === post.posterId) // check if post was made by current user
+				if(id === post.poster.id) // check if post was made by current user
 				{
 					await post.delete() // remove post from database
 					const postIndex = user.posts.indexOf(postId)

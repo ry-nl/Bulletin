@@ -1,0 +1,67 @@
+.post {
+    padding: 30px;
+    border-bottom: var(--selected-color) solid 1px;
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 30px;
+}
+
+.post-header > h3 {
+    font-size: 0.8rem;
+    color: var(--highlight-color)
+}
+
+.userinfo > .MuiAvatar-root {
+    width: 40px;
+    height: 40px;
+    border: var(--highlight-color) 2px solid;
+}
+
+.userinfo > h3 {
+    font-weight: 400;
+    margin-left: 10px;
+}
+
+.post-header > .userinfo {
+    display: flex;
+    align-items: center;
+}
+
+.post-content {
+    padding-left: 50px;
+    padding-right: 50px;
+
+    font-weight: 300;
+}
+
+.post-content > p {
+    margin-bottom: 20px;
+}
+
+.post-content > img {
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.post-links {
+    display: flex;
+
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.post-icon {
+    margin-right: 25px;
+    transition: 200ms;
+}
+
+.post-icon:hover {
+    transform: scale(1.1);
+    transition: 200ms;
+    cursor: pointer;
+}

@@ -2,6 +2,7 @@ const {UserInputError} = require('apollo-server')
 
 const Post = require('../../models/Post')
 const authenticate = require('../../util/authenticate')
+const { formatAMPM, formatYMD } = require('../../util/time')
 
 module.exports = {
         Mutation: {
@@ -19,7 +20,8 @@ module.exports = {
                                 post.likes.push({
                                         likerId: id,
                                         liker: username,
-                                        createdAt: new Date().toISOString()
+                                        createdAt: formatAMPM(new Date()),
+                                        createdOn: formatYMD(new Date())
                                 })
                         }
 

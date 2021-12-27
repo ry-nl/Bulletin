@@ -1,0 +1,121 @@
+.login {
+    padding-top: 40px;
+}
+
+.login > .title {
+    display: flex;
+    justify-content: center;
+}
+
+.title > h1 {
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.login-form {
+    display: grid;
+    justify-content: center;
+}
+
+.login-input {
+    color: white;
+
+    margin-top: 20px;
+    height: 50px;
+    width: 400px;
+
+    padding-left: 10px;
+
+    border: none;
+
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+
+    border-bottom: var(--highlight-color) solid 1px;
+    background-color: var(--background-color);
+    transition: 200ms;
+}
+
+.login-input:hover {
+    outline: none;
+    background-color: var(--selected-color);
+    transition: 200ms;
+}
+
+.login-input:focus {
+    outline: none;
+    background-color: var(--selected-color);
+    border-bottom: white solid 1px;
+    transition: 400ms;
+}
+
+.login-input-error {
+    color: white;
+
+    margin-top: 20px;
+    height: 50px;
+    width: 400px;
+
+    padding-left: 10px;
+
+    border: none;
+
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+
+    border-bottom: var(--error-color) solid 1px;
+    background-color: var(--background-color);
+    transition: 200ms;
+}
+
+.login-input-error:hover {
+    outline: none;
+    background-color: var(--selected-color);
+    transition: 200ms;
+}
+
+.login-input-error:focus {
+    outline: none;
+    background-color: var(--selected-color);
+    border-bottom: var(--error-highlight-color) solid 1px;
+    transition: 400ms;
+}
+
+.login-submit {
+    background-color: var(--highlight-color) !important;
+    border-radius: 0 !important;
+
+    margin: 0 auto !important;
+
+    color: white !important;
+    font-family: 'Lato', sans-serif !important;
+    font-weight: 300 !important;
+    text-transform: none !important;
+
+    margin-top: 20px !important;
+    height: 30px !important;
+    width: 150px !important;
+}
+
+.register-container {
+    margin: 0 auto;
+}
+
+.register-link {
+    background-color: var(--highlight-color) !important;
+    border-radius: 0 !important;
+
+    color: white !important;
+    font-family: 'Lato', sans-serif !important;
+    font-weight: 300 !important;
+    text-transform: none !important;
+
+    margin-top: 20px !important;
+    height: 30px !important;
+    width: 150px !important;
+}
+
+.error {
+    width: 100%;
+    margin-top: 10px;
+}

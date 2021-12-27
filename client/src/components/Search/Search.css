@@ -1,0 +1,50 @@
+.search {
+    position: fixed;
+    left: 80vw;
+    height: 100vh;
+    width: 17.5vw;
+    min-width: fit-content;
+
+    border-left: var(--highlight-color) 1px solid;
+
+    padding: 20px;
+    z-index: 99;
+    background-color: var(--background-color);
+}
+
+.search-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.search-header > .MuiSvgIcon-root {
+    margin-right: 10px;
+    font-size: 25px;
+}
+
+.search-header > form {
+    width: 100%;
+}
+
+.search-input > input {
+    width: 85%;
+    border: none;
+
+    padding: 10px;
+
+    border-bottom: var(--highlight-color) solid 1px;
+    background-color: var(--background-color);
+
+    resize: none;
+
+    font-weight: 400;
+    font-size: 15px;
+    font-family: 'Lato', sans-serif;
+
+    color: white;
+}
+
+.search-input > input:focus {
+    outline: none;
+}

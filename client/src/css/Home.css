@@ -1,0 +1,17 @@
+.post-fab {
+    position: fixed !important;
+    right: 21vw !important;
+    bottom: 2vh !important;
+}
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.loading {
+    width: 80px !important;
+    height: 80px !important;
+    margin-top: 100px !important;
+}

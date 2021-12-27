@@ -1,7 +1,8 @@
-const {UserInputError, AuthenticationError} = require('apollo-server')
+const { UserInputError, AuthenticationError } = require('apollo-server')
 
 const Post = require('../../models/Post')
 const authenticate = require('../../util/authenticate')
+const { formatAMPM, formatYMD } = require('../../util/time')
 
 module.exports = {
         Mutation: {
@@ -24,7 +25,8 @@ module.exports = {
                                 commenterId: id,
                                 commenter: username,
                                 content: content,
-                                createdAt: new Date().toISOString()
+                                createdAt: formatAMPM(new Date()),
+                                createdOn: formatYMD(new Date())
                         })
 
                         await post.save()

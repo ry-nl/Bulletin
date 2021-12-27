@@ -1,4 +1,4 @@
-const {model, Schema} = require('mongoose')
+const { model, Schema } = require('mongoose')
 
 // POST SCHEMA
 
@@ -8,8 +8,10 @@ const postSchema = new Schema({
 		image: String
 	},
 
-	posterId: String,
-	poster: String,
+	poster: {
+		type: Schema.Types.ObjectId,
+		ref: 'User'
+	},
 
 	comments: [
 		{
@@ -28,6 +30,7 @@ const postSchema = new Schema({
 	],
 
 	createdAt: String,
+	createdOn: String
 })
 
 module.exports = model('Post', postSchema)

@@ -5,10 +5,11 @@ const {gql} = require('graphql-tag')
 const typeDefs = gql`
 	type Post {
 		id: ID!
+		createdOn: String!
 		createdAt: String!
 
 		content: Content!
-		poster: String!
+		poster: User!
 		
 		likes: [Like]!
 		comments: [Comment]!
@@ -22,26 +23,29 @@ const typeDefs = gql`
 	}
 	type Comment {
 		id: ID!
+		createdOn: String!
 		createdAt: String!
 		commenterId: String!
 		commenter: String!
 		content: String!
 	}
 	type Like {
+		createdOn: String!
 		createdAt: String!
 		likerId: String!
 		liker: String!
 	}
 	type User {
 		id: ID!
+		createdOn: String!
 		createdAt: String!
 
 		username: String!
 		password: String!
 		email: String!
 
-		userPic: String
-		userBio: String
+		userPic: String!
+		userBio: String!
 
 		followers: [User]!
 		following: [User]!
@@ -66,6 +70,7 @@ const typeDefs = gql`
 		# posts
 		getPosts: [Post]
 		getPost(postId: ID!): Post
+		getUserFeedPosts(quantity: Int!, startingIndex: Int!): [Post]!
 
 		# users
 		getUsers: [User]

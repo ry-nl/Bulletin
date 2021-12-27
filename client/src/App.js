@@ -1,42 +1,36 @@
-import './App.css';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+
+import './css/App.css';
+import Navbar from './components/Navbar/Navbar'
+import Home from './Pages/Home'
+import Messages from './Pages/Messages'
+import Bookmarks from './Pages/Bookmarks'
+import Login from './Pages/Login'
+import Register from './Pages/Register'
+import Search from './components/Search/Search'
+
+import { AuthProvider } from './context/auth'
 
 function App() {
     return (
-        // <Router>
-        //     <Route path='/' element={<Home />}></Route>
-        // </Router>
-        <h1>Hello!</h1>
+        <AuthProvider>
+            <Router>
+                <div className='app'>
+                    <Navbar />
+                    <div className='content'> 
+                        <Routes>
+                            <Route path='/' element={<Home />}></Route>
+                            <Route path='/messages' element={<Messages />}></Route>
+                            <Route path='/bookmarks' element={<Bookmarks />}></Route>
+                            <Route path='/login' element={<Login />}></Route>
+                            <Route path='/register' element={<Register />}></Route>
+                        </Routes>
+                    </div>
+                    <Search />
+                </div>
+            </Router>
+        </AuthProvider>
     )
 }
-
-
-// import { ApolloClient, InMemoryCache, ApolloProvider, HttpLink, from } from '@apollo/client'
-// import { onError } from '@apollo/client/link/error'
-
-// const errorLink = onError(({ graphqlErrors, networkError }) => {
-//         if(graphqlErrors) {
-//                 graphqlErrors.map(({ message, location, path }) => {
-//                         alert('API error ' + message)
-//                 })
-//         }
-// })
-// const link = from([
-//         errorLink,
-//         new HttpLink({ uri: 'http://localhost:3000/api '}),
-// ])
-
-// const client = new ApolloClient({
-//         cache: new InMemoryCache(),
-//         link: link,
-// })
-
-// function App() {
-//         return (
-//                 <ApolloProvider client={client}>
-
-//                 </ApolloProvider>
-//         )
-// }
 
 export default App;
