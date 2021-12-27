@@ -16,12 +16,14 @@
     font-size: 15px;
     color: var(--highlight-color);
     user-select: none;
+    transition: 400ms;
 }
 
 .logo {
     font-size: 50px !important;
     margin-right: 20px;
-    color: var(--highlight-color)
+    color: var(--highlight-color);
+    transition: 400ms;
 }
 
 .inputbox > form {
@@ -40,26 +42,58 @@
 
     resize: none;
 
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+
     font-weight: 400;
     font-size: 15px;
     font-family: 'Lato', sans-serif;
 
     color: white;
+    transition: 200ms;
+}
+
+TextArea:hover {
+    outline: none;
+    background-color: var(--selected-color);
+    transition: 200ms;
 }
 
 TextArea:focus {
     outline: none;
+    background-color: var(--selected-color);
+    border-bottom: white solid 1px;
+    transition: 400ms;
 }
 
 .inputbox-buttons {
+    display: flex;
+    align-items: center;
+
+    padding: 0 10px;
     height: 40px;
+
+    color: var(--highlight-color);
+    transition: 200ms;
+}
+
+.inputbox-button:hover {
+    color: white;
+    cursor: pointer;
+    transition: 200ms;
+}
+
+.inputbox-button-active {
+    color: white;
+    cursor: pointer;
 }
 
 .inputbox-submit {
     position: absolute !important;
     right: 25vw;
     
-    background-color: var(--highlight-color) !important;
+    border: var(--highlight-color) 1px solid !important;
+    background-color: var(--background-color) !important;
 
     color: white !important;
     font-family: 'Lato', sans-serif !important;
@@ -70,4 +104,10 @@ TextArea:focus {
 
     height: 30px !important;
     width: 100px !important;
+    transition: 200ms;
+}
+
+.inputbox-submit:hover {
+    background-color: var(--selected-color) !important;
+    transition: 200ms;
 }

@@ -27,13 +27,13 @@ export default function Navbar() {
                     <Avatar className='user-icon' />
                 }
             </div>
-            <Link to='/' style={{'textDecoration': 'none', 'color': 'white'}}>
+            <Link to='/' style={user ? {'textDecoration': 'none', 'color': 'white'} : {'textDecoration': 'none', 'color': 'gray'}} className={!user && 'disabled-link'}>
                 <NavbarTab path={'/'} currPath={path} text='Home' Icon={DashboardIcon} />
             </Link>
-            <Link to='/messages' style={{'textDecoration': 'none', 'color': 'white'}}>
+            <Link to='/messages' style={user ? {'textDecoration': 'none', 'color': 'white'} : {'textDecoration': 'none', 'color': 'gray'}} className={!user && 'disabled-link'}>
                 <NavbarTab path={'/messages'} currPath={path} text='Messages' Icon={EmailIcon} />
             </Link>
-            <Link to='/bookmarks' style={{'textDecoration': 'none', 'color': 'white'}}>
+            <Link to='/bookmarks' style={user ? {'textDecoration': 'none', 'color': 'white'} : {'textDecoration': 'none', 'color': 'gray'}} className={!user && 'disabled-link'}>
                 <NavbarTab path={'/bookmarks'} currPath={path} text='Bookmarks' Icon={BookmarksIcon} />
             </Link>
             {user && 
