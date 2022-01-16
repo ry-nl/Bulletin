@@ -83,6 +83,7 @@ const REGISTER_USER = gql`
             email
             username
             userPic
+            userBio
             token
         }
     }

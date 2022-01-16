@@ -1,0 +1,52 @@
+.account-header {
+    display: flex;
+
+    padding: 30px 0;
+    border-bottom: var(--highlight-color) 1px solid;
+}
+
+.account-header > div {
+    margin-left: 3vw;
+}
+
+.username {
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.userpic {
+    width: 150px !important;
+    height: 150px !important;
+}
+
+.userbio {
+    font-weight: 300;
+    white-space: pre-wrap;
+    width: 35vw;
+}
+
+.header-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.header-buttons > .button {
+    color: var(--highlight-color);
+    margin-bottom: 10px;
+    transition: 200ms;
+}
+
+.header-buttons > .button:hover {
+    color: white;
+    transition: 200ms;
+    cursor: pointer;
+}
+
+.no-posts {
+    color: var(--highlight-color);
+    letter-spacing: 1px;
+    font-weight: 300;
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+}

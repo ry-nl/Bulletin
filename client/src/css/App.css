@@ -4,14 +4,12 @@
     --highlight-color: #6C6C6C;
     --error-highlight-color: rgb(255, 65, 65);
     --error-color: rgb(150, 65, 65);
-
     display: flex;
 }
 
 .content{
     min-height: 100vh;
-    width: 60vw;
+    width: 60%;
     margin-left: 20vw;
-    min-width: fit-content;
-    overflow-y: scroll;
+    overflow: hidden;
 }

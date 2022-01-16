@@ -2,7 +2,7 @@
     position: fixed;
     left: 0;
     height: 100vh;
-    width: 20vw;
+    width: 20%;
     border-right: var(--highlight-color) 1px solid;
     z-index: 99;
     background-color: var(--background-color);
@@ -21,10 +21,13 @@
 .account-tab > h2 {
     font-weight: 300;
     font-size: 1.25rem;
+    cursor: pointer;
 }
 
 .user-icon {
     margin-right: 15px;
+    border: white 1px solid;
+    cursor: pointer;
 }
 
 .disabled-link {

@@ -76,6 +76,7 @@ const LOGIN_USER = gql`
             email
             username
             userPic
+            userBio
             token
         }
     }

@@ -7,6 +7,7 @@ import Messages from './Pages/Messages'
 import Bookmarks from './Pages/Bookmarks'
 import Login from './Pages/Login'
 import Register from './Pages/Register'
+import Account from './Pages/Account'
 import Search from './components/Search/Search'
 
 import { AuthProvider } from './context/auth'
@@ -24,6 +25,7 @@ function App() {
                             <Route path='/bookmarks' element={<Bookmarks />}></Route>
                             <Route path='/login' element={<Login />}></Route>
                             <Route path='/register' element={<Register />}></Route>
+                            <Route path='/account/:username' element={<Account />}></Route>
                         </Routes>
                     </div>
                     <Search />

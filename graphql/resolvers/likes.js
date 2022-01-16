@@ -6,7 +6,7 @@ const { formatAMPM, formatYMD } = require('../../util/time')
 
 module.exports = {
         Mutation: {
-                async likePost(parent, {postId}, context, info) {
+                async likePost(parent, { postId }, context, info) {
                         const {id, username} = authenticate(context)
 
                         const post = await Post.findById(postId)
@@ -26,7 +26,7 @@ module.exports = {
                         }
 
                         await post.save()
-                        return post
+                        return post.populate('likes')
                 }
         }
 }

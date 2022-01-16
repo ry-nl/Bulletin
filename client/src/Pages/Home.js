@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useEffect, useContext } from 'react'
 import { Navigate } from 'react-router-dom'
 import gql from 'graphql-tag'
 import { useQuery } from '@apollo/react-hooks'
@@ -14,7 +14,9 @@ import { AuthContext } from '../context/auth'
 function Home() {
     const context = useContext(AuthContext)
 
-    const { loading, data } = useQuery(FETCH_POSTS_QUERY)
+    const { loading, data, refetch } = useQuery(FETCH_POSTS_QUERY)
+
+    useEffect(() => { refetch() }, [refetch])
 
     return (
         <div className='home'>
@@ -33,7 +35,11 @@ function Home() {
                                     userId={post.poster.id}
                                     username={post.poster.username}
                                     userPic={post.poster.userPic}
-                                    timeStamp={post.createdAt}
+                                    likes={post.likes}
+                                    numLikes={post.likeCount}
+                                    numComments={post.commentCount}
+                                    createdAt={post.createdAt}
+                                    createdOn={post.createdOn}
                                     text={post.content.text}
                                     image={post.content.image}
                                 />
@@ -80,6 +86,9 @@ const FETCH_POSTS_QUERY = gql`
             content {
                 text
                 image
+            }
+            likes {
+                likerId
             }
             likeCount
             commentCount

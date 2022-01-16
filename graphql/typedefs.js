@@ -70,11 +70,12 @@ const typeDefs = gql`
 		# posts
 		getPosts: [Post]
 		getPost(postId: ID!): Post
+		getUserPosts(quantity: Int!, startingIndex: Int!, userId: ID, username: String): [Post]!
 		getUserFeedPosts(quantity: Int!, startingIndex: Int!): [Post]!
 
 		# users
 		getUsers: [User]
-		getUser(userId: ID!): User
+		getUser(userId: ID, username: String): User
 	}
 
 	type Mutation {

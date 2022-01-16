@@ -21,11 +21,21 @@ module.exports = {
 			}
 		},
 
-		async getUser(parent, { userId }, context, info) {
-			try {
-				const user = await User.findById(userId)
+		async getUser(parent, { userId, username }, context, info) {
+			if(!userId && !username) throw new Error('Empty fields')
+			else if((userId && userId.toString().trim() === '') && (username && username.trim() === '')) throw new Error('Empty fields')
 
-				if(user) return user
+			try {
+				if(userId) {
+					const userById= await User.findById(userId).populate('followers').populate('following')
+					if(userById) return userById
+				}
+
+				if(username)
+				{
+					const userByUsername = await User.findOne({ username }).populate('followers').populate('following')
+					if(userByUsername) return userByUsername
+				}
 				else throw new Error('User not found')
 			}
 			catch(err) {
@@ -38,9 +48,9 @@ module.exports = {
 		async login(parent, {username, password}, context, info) { // LOGIN
 			const {valid, errors} = validateLogin(username, password) // make sure input fields are valid
 
-			if(!valid) throw new UserInputError('Errors', {errors}) // if invalid throw error
+			if(!valid) throw new UserInputError('Errors', { errors }) // if invalid throw error
 
-			const user = await User.findOne({username}) // get user by username
+			const user = await User.findOne({ username }) // get user by username
 
 			if(!user) { // if user does not exist throw error
 				errors.username = 'User does not exist'

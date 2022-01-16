@@ -1,9 +1,12 @@
 .inputbox {
     display: flex;
+    position: relative;
 
     padding: 10px;
     margin-top: 25px;
     padding-left: 30px;
+
+    width: 60vw;
 
     border-bottom: var(--highlight-color) solid 1px;
 }
@@ -14,7 +17,7 @@
 
 .logo-container > p {
     font-size: 15px;
-    color: var(--highlight-color);
+    color: white;
     user-select: none;
     transition: 400ms;
 }
@@ -22,13 +25,13 @@
 .logo {
     font-size: 50px !important;
     margin-right: 20px;
-    color: var(--highlight-color);
+    color: white;
     transition: 400ms;
 }
 
 .inputbox > form {
     display: inline-block;
-    width: 85%;
+    width: 80%;
 }
 
 .inputbox-form > TextArea {
@@ -36,6 +39,7 @@
     border: none;
 
     padding: 10px;
+
 
     border-bottom: var(--highlight-color) solid 1px;
     background-color: var(--background-color);
@@ -90,7 +94,7 @@ TextArea:focus {
 
 .inputbox-submit {
     position: absolute !important;
-    right: 25vw;
+    right: 8vw;
     
     border: var(--highlight-color) 1px solid !important;
     background-color: var(--background-color) !important;

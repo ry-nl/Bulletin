@@ -9,6 +9,7 @@ import ImageIcon from '@mui/icons-material/Image'
 import TextArea from 'react-textarea-autosize';
 import { useForm } from '../../util/hooks'
 
+
 function InputBox() {
     const [inputMode, setInputMode] = useState(true) // true is text, false is image
     const { handleChange, handleSubmit, data } = useForm(post, {

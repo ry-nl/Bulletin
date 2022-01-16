@@ -11,10 +11,34 @@ module.exports = {
 	Query: {
 		async getPosts() { // GET ALL POSTS
 			try {
-				const posts = await Post.find().populate('poster') // get all existing posts from database
+				const posts = await Post.find().populate('poster').populate('likes') // get all existing posts from database
 				return posts // return all posts
 			}
 			catch(err) { // handle exception
+				throw new Error(err)
+			}
+		},
+
+		async getUserPosts(parent, { quantity, startingIndex, userId, username }, context, info) {
+			if(!userId && !username) throw new Error('Empty fields')
+			else if((userId && userId.toString().trim() === '') && (username && username.trim() === '')) throw new Error('Empty fields')
+			
+			try {
+				if(userId)
+				{
+					const userById = await User.findById(userId).populate('posts')
+					if(userById) return userById.posts.slice(startingIndex, startingIndex + quantity)
+				}
+
+				if(username)
+				{
+					const userByUsername = await User.findOne({ username }).populate('posts')
+					if(userByUsername) return userByUsername.posts.slice(startingIndex, startingIndex + quantity)
+				}
+
+				throw new Error('User not found')
+			}
+			catch(err) {
 				throw new Error(err)
 			}
 		},
