@@ -6,7 +6,7 @@
     margin-top: 25px;
     padding-left: 30px;
 
-    width: 60vw;
+    width: 100%;
 
     border-bottom: var(--highlight-color) solid 1px;
 }
@@ -31,7 +31,7 @@
 
 .inputbox > form {
     display: inline-block;
-    width: 80%;
+    width: 85%;
 }
 
 .inputbox-form > TextArea {
@@ -94,7 +94,7 @@ TextArea:focus {
 
 .inputbox-submit {
     position: absolute !important;
-    right: 8vw;
+    right: 10%;
     
     border: var(--highlight-color) 1px solid !important;
     background-color: var(--background-color) !important;

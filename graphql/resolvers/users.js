@@ -2,8 +2,9 @@ const { UserInputError } = require('apollo-server')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
-const {SECRET_KEY} = require('../../config')
+const { SECRET_KEY } = require('../../config')
 const User = require('../../models/User')
+const authenticate = require('../../util/authenticate')
 const { validateRegistration, validateLogin } = require('../../util/validate')
 const { formatAMPM, formatYMD } = require('../../util/time')
 
@@ -45,7 +46,7 @@ module.exports = {
 	},
 
 	Mutation: {
-		async login(parent, {username, password}, context, info) { // LOGIN
+		async login(parent, { username, password }, context, info) { // LOGIN
 			const {valid, errors} = validateLogin(username, password) // make sure input fields are valid
 
 			if(!valid) throw new UserInputError('Errors', { errors }) // if invalid throw error
@@ -128,6 +129,44 @@ module.exports = {
 				...added._doc,
 				id: added._id,
 				token
+			}
+		},
+
+		async changeUserBio(parent, { content }, context, info) {
+			if(!content) content = ''
+
+			const { id } = authenticate(context)
+
+			try {
+				const user = await User.findById(id)
+
+				if(!user) throw new Error('User not found')
+
+				await user.updateOne({ userBio: content })
+				
+				return await user.save()
+			}
+			catch(err) {
+				throw new Error(err)
+			}
+		},
+
+		async changeUserPic(parent, { image }, context, info) {
+			if(!image) image = ''
+
+			const { id } = authenticate(context)
+
+			try {
+				const user = await User.findById(id)
+
+				if(!user) throw new Error('User not found')
+
+				await user.updateOne({ userPic: image })
+				
+				return await user.save()	
+			}
+			catch(err) {
+				throw new Error(err)
 			}
 		}
 	}

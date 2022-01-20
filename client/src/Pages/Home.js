@@ -11,6 +11,7 @@ import Post from '../components/Post/Post'
 
 import { AuthContext } from '../context/auth'
 
+
 function Home() {
     const context = useContext(AuthContext)
 

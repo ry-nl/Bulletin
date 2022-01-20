@@ -61,7 +61,3 @@
     border-bottom: white solid 1px;
     transition: 400ms;
 }
-
-.search-input > input:focus {
-    outline: none;
-}
