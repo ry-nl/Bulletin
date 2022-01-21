@@ -102,7 +102,7 @@ const typeDefs = gql`
 		likePost(postId: ID!): Post!
 
 		# follows
-		follow(userId: ID!): User!
+		follow(userId: ID, username: String): User!
 	}
 `
 

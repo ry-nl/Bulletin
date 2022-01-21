@@ -11,9 +11,12 @@ import { AuthContext } from '../context/auth'
 
 
 function Register() {
+
     const [errors, setErrors] = useState({})
     const context = useContext(AuthContext)
     const navigate = useNavigate()
+
+    // REGISTER FORM ----------------------------------
 
     const { handleChange, handleSubmit, data } = useForm(register, {
         email: '',
@@ -36,6 +39,8 @@ function Register() {
     function register() {
         registerUser();
     }
+
+    // RENDERING ---------------------------------------
 
     return (
         <div className='register'>

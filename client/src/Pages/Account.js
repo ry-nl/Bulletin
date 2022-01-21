@@ -11,7 +11,7 @@ import Box from '@mui/material/Box';
 import Post from '../components/Post/Post'
 
 import { useForm } from '../util/hooks'
-import { FETCH_USER_POSTS, GET_USER, CHANGE_BIO, CHANGE_PFP } from '../util/queries'
+import { FETCH_USER_POSTS, GET_USER, CHANGE_BIO, CHANGE_PFP, FOLLOW_USER } from '../util/queries'
 import { AuthContext } from '../context/auth'
 
 
@@ -28,7 +28,8 @@ const modalStyle = {
 
 
 function Account() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    window.scrollTo({ top: 0 });
 
     const { user } = useContext(AuthContext)
     const { username } = useParams()
@@ -66,6 +67,12 @@ function Account() {
     function newPfp() {
         createNewPfp();
     }
+
+    // FOLLOW USER ----------------------------------
+
+    const [followUser] = useMutation(FOLLOW_USER, {
+        variables: username
+    })
 
     // GET USER POSTS ----------------------------------
 
@@ -105,12 +112,14 @@ function Account() {
                             <div>
                                 <div className='account-header-container'>
                                     <h1 className='username'>{ userData && userData.getUser.username }</h1>
-                                    { user.username !== username && <p className='follow' onClick={()=>{ console.log('follow') }}>Follow</p> }
+                                    { user.username !== username && 
+                                        <p className='follow' onClick={()=>{ followUser() }}>Follow</p>    // render follow button for other accounts
+                                    }
                                 </div>
                                 <p className='userbio'>{ userData && userData.getUser.userBio }</p>
                             </div>
                             
-                            { userData && (userData.getUser.id === user.id) &&  // if viewing own page display edit buttons
+                            { userData && (userData.getUser.id === user.id) &&      // if viewing own page display edit buttons
                                 <div className='header-buttons'>
                                         <ProfileIcon className='button' onClick={()=>{ setModalOpen('pfp') }}/>
                                         <EditIcon className='button' onClick={()=>{ setModalOpen('bio') }}/>

@@ -35,11 +35,11 @@ function InputBox() {
                 <LogoIcon className='logo'/>
                 <p>Bulletin</p>
             </div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={ handleSubmit }>
                 <div className='inputbox-form'>
                     { inputMode ? 
-                        <TextArea placeholder='Thoughts go here...' type='text' name='text' maxRows={5} value={data.text} onChange={handleChange} /> :
-                        <TextArea placeholder='Your favorite meme link' type='text' name='image' maxRows={5} value={data.image} onChange={handleChange} />
+                        <TextArea placeholder='Thoughts go here...' type='text' name='text' maxRows={5} value={ data.text } onChange={ handleChange } /> :
+                        <TextArea placeholder='Your favorite meme link' type='text' name='image' maxRows={5} value={ data.image } onChange={ handleChange } />
                     }
                 </div>
                 <div className='inputbox-buttons'>

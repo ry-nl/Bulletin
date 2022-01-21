@@ -73,7 +73,7 @@ function Post({ postId, userId, userPic, username, text, image, createdOn, creat
                 <img src={image} alt=''></img>
             </div>
             <span className='post-links'>
-                <FavoriteIcon className={ liked ? 'post-icon active-like' : 'post-icon' } onClick={handleLike} />
+                <FavoriteIcon className={ liked ? 'post-icon active-like' : 'post-icon' } onClick={ handleLike } />
                 <p>{likeCount}</p>
                 <CommentIcon className='post-icon' onClick={()=> { setCommentsOpen(true) }} />
                 <p>{commentCount}</p>

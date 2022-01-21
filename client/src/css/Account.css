@@ -39,15 +39,14 @@
 .userbio {
     font-weight: 300;
     white-space: pre-wrap;
-    width: 35vw;
 }
 
 .header-buttons {
     display: flex;
     flex-direction: column;
-    position: relative;
-    justify-content: right;
-    padding: 0 5vw;
+    justify-self: flex-start;
+    width: 50px !important;
+    margin: 0 30px;
 }
 
 .header-buttons > .button {

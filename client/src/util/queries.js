@@ -174,3 +174,16 @@ export const DELETE_POST = gql`
         deletePost(postId: $postId)
     }
 `
+
+// FOLLOW MUTATIONS --------------------------------------
+
+export const FOLLOW_USER = gql`
+    mutation follow(
+        $userId: ID!
+    ) {
+        follow(userId: $userId) {
+            id
+            username
+        }
+    }
+`

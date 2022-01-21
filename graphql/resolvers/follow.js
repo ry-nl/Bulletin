@@ -9,12 +9,20 @@ module.exports = {
     
 	// MUTATIONS ----------------------------------------------------------
     Mutation: {
-        async follow(parent, { userId }, context, info) {
-            const {id} = authenticate(context) 
+        async follow(parent, { userId, username }, context, info) {
+			if(!userId && !username) throw new Error('Empty fields')
+			else if((userId && userId.toString().trim() === '') && (username && username.trim() === '')) throw new Error('Empty fields')
+
+            const { id } = authenticate(context) 
 
             try {
                 const thisUser = await User.findById(id)
-                const otherUser = await User.findById(userId)
+                let otherUser = null
+
+                if(userId) otherUser = await User.findById(userId).populate('followers').populate('following')
+                else otherUser = await User.findOne({ username }).populate('followers').populate('following')
+
+                if(!otherUser) throw new Error('One or more users not found')
 
                 if(thisUser && otherUser) {
                     const thisUserIndex = thisUser.following.indexOf(otherUser._id)
