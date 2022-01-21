@@ -2,12 +2,12 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 import './css/App.css';
 import Navbar from './components/Navbar/Navbar'
-import Home from './Pages/Home'
-import Messages from './Pages/Messages'
-import Bookmarks from './Pages/Bookmarks'
-import Login from './Pages/Login'
-import Register from './Pages/Register'
-import Account from './Pages/Account'
+import Home from './pages/Home'
+import Messages from './pages/Messages'
+import Bookmarks from './pages/Bookmarks'
+import Login from './pages/Login'
+import Register from './pages/Register'
+import Account from './pages/Account'
 import Search from './components/Search/Search'
 
 import { AuthProvider } from './context/auth'
