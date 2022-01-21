@@ -3,6 +3,8 @@ const {gql} = require('graphql-tag')
 // GQL TABLE DEFINITIONS
 
 const typeDefs = gql`
+
+	# MODELS -----------------------------------------------------
 	type Post {
 		id: ID!
 		createdOn: String!
@@ -66,6 +68,7 @@ const typeDefs = gql`
 		email: String!
 	}
 
+	# QUERIES AND MUTATIONS -----------------------------------------
 	type Query {
 		# posts
 		getPosts: [Post]
@@ -101,6 +104,6 @@ const typeDefs = gql`
 		# follows
 		follow(userId: ID!): User!
 	}
-	`
+`
 
 module.exports = typeDefs

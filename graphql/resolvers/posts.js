@@ -8,6 +8,8 @@ const { formatAMPM, formatYMD } = require('../../util/time')
 // POST QUERY METHODS
 
 module.exports = {
+
+	// QUERIES ----------------------------------------------------------
 	Query: {
 		async getPosts() { // GET ALL POSTS
 			try {
@@ -73,6 +75,7 @@ module.exports = {
 
 	},
 
+	// MUTATIONS ----------------------------------------------------------
 	Mutation: {
 		async createPost(parent, { text, image }, context, info) { // CREATE POST
 			const { id, username } = authenticate(context) // check if user is logged in and has valid token

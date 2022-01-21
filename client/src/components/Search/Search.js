@@ -3,6 +3,7 @@ import React from 'react'
 import './Search.css'
 import SearchIcon from '@mui/icons-material/Search'
 
+
 export default function Search() {
     return (
         <div className='search'>

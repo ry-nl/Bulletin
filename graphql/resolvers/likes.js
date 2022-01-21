@@ -5,6 +5,8 @@ const authenticate = require('../../util/authenticate')
 const { formatAMPM, formatYMD } = require('../../util/time')
 
 module.exports = {
+
+	// MUTATIONS ----------------------------------------------------------
         Mutation: {
                 async likePost(parent, { postId }, context, info) {
                         const {id, username} = authenticate(context)

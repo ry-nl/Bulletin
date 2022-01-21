@@ -11,6 +11,8 @@ const { formatAMPM, formatYMD } = require('../../util/time')
 // USER QUERY METHODS
 
 module.exports = {
+
+	// QUERIES ----------------------------------------------------------
 	Query: {
 		async getUsers() {
 			try {
@@ -45,6 +47,7 @@ module.exports = {
 		}
 	},
 
+	// MUTATIONS ----------------------------------------------------------
 	Mutation: {
 		async login(parent, { username, password }, context, info) { // LOGIN
 			const {valid, errors} = validateLogin(username, password) // make sure input fields are valid

@@ -1,11 +1,12 @@
 import React, { useState, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { gql, useMutation } from '@apollo/react-hooks'
+import { useMutation } from '@apollo/react-hooks'
 
 import '../css/Login.css'
 import { Button, Alert, CircularProgress } from '@mui/material'
-import { useForm } from '../util/hooks'
 
+import { useForm } from '../util/hooks'
+import { LOGIN_USER } from '../util/queries'
 import { AuthContext } from '../context/auth'
 
 
@@ -63,23 +64,5 @@ function Login() {
     )
 }
 
-const LOGIN_USER = gql`
-    mutation login(
-        $username: String!
-        $password: String!
-    ) {
-        login(
-            username: $username
-            password: $password
-        ) {
-            id
-            email
-            username
-            userPic
-            userBio
-            token
-        }
-    }
-`
 
 export default Login

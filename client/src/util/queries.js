@@ -29,14 +29,59 @@ export const GET_USER = gql`
 
 // USER MUTATIONS --------------------------------------
 
+export const REGISTER_USER = gql`
+    mutation register(
+        $email: String!
+        $username: String!
+        $password: String!
+        $cPassword: String!
+    ) {
+        register(
+            registerInput: {
+                email: $email
+                username: $username
+                password: $password
+                cPassword: $cPassword
+
+            }
+        ) {
+            id
+            email
+            username
+            userPic
+            userBio
+            token
+        }
+    }
+`
+
+export const LOGIN_USER = gql`
+    mutation login(
+        $username: String!
+        $password: String!
+    ) {
+        login(
+            username: $username
+            password: $password
+        ) {
+            id
+            email
+            username
+            userPic
+            userBio
+            token
+        }
+    }
+`
+
 export const CHANGE_BIO = gql`
     mutation changeUserBio(
         $content: String!
     ) {
         changeUserBio(content: $content) {
             id
-            # username
-            # userBio
+            username
+            userBio
         }
     }
 `
@@ -72,6 +117,31 @@ export const FETCH_USER_POSTS = gql`
             content {
                 text
                 image
+            }
+            likeCount
+            commentCount
+            
+            createdAt
+            createdOn
+        }
+    }
+`
+
+export const FETCH_POSTS_QUERY = gql`
+    {
+        getPosts {
+            id
+            poster {
+                id
+                username
+                userPic
+            }
+            content {
+                text
+                image
+            }
+            likes {
+                likerId
             }
             likeCount
             commentCount

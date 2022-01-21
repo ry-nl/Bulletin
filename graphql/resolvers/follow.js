@@ -6,6 +6,8 @@ const authenticate = require('../../util/authenticate')
 // FOLLOW METHODS
 
 module.exports = {
+    
+	// MUTATIONS ----------------------------------------------------------
     Mutation: {
         async follow(parent, { userId }, context, info) {
             const {id} = authenticate(context) 

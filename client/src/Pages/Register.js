@@ -1,10 +1,12 @@
 import React, { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { gql, useMutation } from '@apollo/react-hooks'
+import { useMutation } from '@apollo/react-hooks'
 
 import '../css/Register.css'
 import { Button, Alert, CircularProgress } from '@mui/material'
+
 import { useForm } from '../util/hooks'
+import { REGISTER_USER } from '../util/queries'
 import { AuthContext } from '../context/auth'
 
 
@@ -62,31 +64,5 @@ function Register() {
         </div>
     )
 }
-
-const REGISTER_USER = gql`
-    mutation register(
-        $email: String!
-        $username: String!
-        $password: String!
-        $cPassword: String!
-    ) {
-        register(
-            registerInput: {
-                email: $email
-                username: $username
-                password: $password
-                cPassword: $cPassword
-
-            }
-        ) {
-            id
-            email
-            username
-            userPic
-            userBio
-            token
-        }
-    }
-`
 
 export default Register

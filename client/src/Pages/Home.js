@@ -1,6 +1,5 @@
 import React, { useEffect, useContext } from 'react'
 import { Navigate } from 'react-router-dom'
-import gql from 'graphql-tag'
 import { useQuery } from '@apollo/react-hooks'
 
 import '../css/Home.css'
@@ -9,6 +8,7 @@ import { CircularProgress, Fab } from '@mui/material'
 import InputBox from '../components/InputBox/InputBox'
 import Post from '../components/Post/Post'
 
+import { FETCH_POSTS_QUERY } from '../util/queries'
 import { AuthContext } from '../context/auth'
 
 
@@ -56,48 +56,5 @@ function Home() {
         </div> 
     )
 }
-
-// const FETCH_FEED_QUERY = gql`
-//     {
-//         getUserFeedPosts(id: userId) {
-//             id
-//             poster
-//             posterId
-//             posterPic
-//             content {
-//                 text
-//                 image
-//             }
-//             likeCount
-//             commentCount
-//             createdAt
-//         }
-//     }
-// `
-
-const FETCH_POSTS_QUERY = gql`
-    {
-        getPosts {
-            id
-            poster {
-                id
-                username
-                userPic
-            }
-            content {
-                text
-                image
-            }
-            likes {
-                likerId
-            }
-            likeCount
-            commentCount
-            
-            createdAt
-            createdOn
-        }
-    }
-`
 
 export default Home

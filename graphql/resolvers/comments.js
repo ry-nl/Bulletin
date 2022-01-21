@@ -5,57 +5,59 @@ const authenticate = require('../../util/authenticate')
 const { formatAMPM, formatYMD } = require('../../util/time')
 
 module.exports = {
-        Mutation: {
-                async createComment(parent, {postId, content}, context, info) {
-                        const {id, username} = authenticate(context)
 
-                        if(content.trim() === '') {
-                                throw new UserInputError('Empty comment', {
-                                        errors: {
-                                                content: 'Comment must have content'
-                                        }
-                                })
-                        }
+	// MUTATIONS ----------------------------------------------------------
+	Mutation: {
+		async createComment(parent, {postId, content}, context, info) {
+			const {id, username} = authenticate(context)
 
-                        const post = await Post.findById(postId)
+			if(content.trim() === '') {
+				throw new UserInputError('Empty comment', {
+					errors: {
+						content: 'Comment must have content'
+					}
+				})
+			}
 
-                        if(!post) throw new UserInputError('Post not found')
+			const post = await Post.findById(postId)
 
-                        post.comments.unshift({
-                                commenterId: id,
-                                commenter: username,
-                                content: content,
-                                createdAt: formatAMPM(new Date()),
-                                createdOn: formatYMD(new Date())
-                        })
+			if(!post) throw new UserInputError('Post not found')
 
-                        await post.save()
-                        return post
-                },
+			post.comments.unshift({
+				commenterId: id,
+				commenter: username,
+				content: content,
+				createdAt: formatAMPM(new Date()),
+				createdOn: formatYMD(new Date())
+			})
 
-                async deleteComment(parent, {postId, commentId}, context, info) {
-                        const {username} = authenticate(context)
+			await post.save()
+			return post
+		},
 
-                        const post = await Post.findById(postId)
+		async deleteComment(parent, {postId, commentId}, context, info) {
+			const {username} = authenticate(context)
 
-                        if(!post) {
-                                throw new UserInputError('Post not found')
-                        }
+			const post = await Post.findById(postId)
 
-                        const commentIndex = post.comments.findIndex(comment => comment._id.toString() == commentId)
+			if(!post) {
+				throw new UserInputError('Post not found')
+			}
 
-                        if(commentIndex === -1) {
-                                throw new UserInputError('comment not found')
-                        }
+			const commentIndex = post.comments.findIndex(comment => comment._id.toString() == commentId)
 
-                        if(post.comments[commentIndex].commenter === username || post.commenter === username) {
-                                post.comments.splice(commentIndex, 1)
+			if(commentIndex === -1) {
+				throw new UserInputError('comment not found')
+			}
 
-                                await post.save()
-                                return post
-                        }
+			if(post.comments[commentIndex].commenter === username || post.commenter === username) {
+				post.comments.splice(commentIndex, 1)
 
-                        throw new AuthenticationError('User can only delete own comments or comments on own posts')
-                }
-        }
+				await post.save()
+				return post
+			}
+
+			throw new AuthenticationError('User can only delete own comments or comments on own posts')
+		}
+	}
 }

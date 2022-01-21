@@ -9,6 +9,23 @@
     margin-left: 3vw;
 }
 
+.account-header-container {
+    display: flex;
+    align-items: center;
+}
+
+.follow {
+    margin-left: 30px;
+    color: var(--highlight-color);
+    transition: 200ms;
+}
+
+.follow:hover {
+    cursor: pointer;
+    color: white;
+    transition: 200ms;
+}
+
 .username {
     letter-spacing: 1px;
     margin-bottom: 10px;
