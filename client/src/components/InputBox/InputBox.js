@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useMutation } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
 
 import './InputBox.css'
 import { Button } from '@mui/material'
