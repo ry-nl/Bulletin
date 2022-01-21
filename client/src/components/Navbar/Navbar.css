@@ -1,10 +1,8 @@
 .navbar {
-    position: fixed;
-    left: 0;
+    justify-self: flex-start;
     height: 100vh;
-    width: 20%;
+    width: clamp(150px, 20%, 500px);
     border-right: var(--highlight-color) 1px solid;
-    z-index: 99;
     background-color: var(--background-color);
 }
 

@@ -1,19 +1,14 @@
 .search {
-    position: fixed;
-    left: 80vw;
+    justify-self: flex-end;
     height: 100vh;
-    width: 20%;
-    min-width: fit-content;
-
+    width: clamp(150px, 20%, 500px);
     border-left: var(--highlight-color) 1px solid;
-
-    padding: 20px;
-    z-index: 99;
     background-color: var(--background-color);
 }
 
 .search-header {
     display: flex;
+    padding: 20px;
     align-items: center;
     justify-content: space-between;
 }
@@ -28,7 +23,7 @@
 }
 
 .search-input > input {
-    width: 75%;
+    width: 90%;
     border: none;
 
     padding: 10px;
