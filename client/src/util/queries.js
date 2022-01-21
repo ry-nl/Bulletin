@@ -167,6 +167,24 @@ export const LIKE_POST = gql`
     }
 `
 
+export const CREATE_POST = gql`
+    mutation createPost(
+        $text: String
+        $image: String
+    ) {
+        createPost(
+            text: $text,
+            image: $image
+        ) {
+            id
+            content {
+                text
+                image
+            }
+        }
+    }
+`
+
 export const DELETE_POST = gql`
     mutation deletePost(
         $postId: ID!

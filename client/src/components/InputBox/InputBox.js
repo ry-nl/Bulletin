@@ -7,7 +7,9 @@ import { Button } from '@mui/material'
 import LogoIcon from '@mui/icons-material/SelectAll';
 import ImageIcon from '@mui/icons-material/Image'
 import TextArea from 'react-textarea-autosize';
+
 import { useForm } from '../../util/hooks'
+import { CREATE_POST } from '../../util/queries'
 
 
 function InputBox() {
@@ -18,8 +20,7 @@ function InputBox() {
     })
 
     const [makePost] = useMutation(CREATE_POST, {
-        onError(err) {},
-        update(proxy, data) {
+        update() {
             window.location.reload(false)
         },
         variables: data
@@ -52,24 +53,5 @@ function InputBox() {
         </div>
     )
 }
-
-const CREATE_POST = gql`
-    mutation createPost(
-        $text: String
-        $image: String
-    ) {
-        createPost(
-            text: $text,
-            image: $image
-        ) {
-            id
-            content {
-                text
-                image
-            }
-        }
-    }
-`
-
 
 export default InputBox
