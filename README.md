@@ -9,10 +9,10 @@ The React application
 ### public
 Contains index and manifest
 ### src
-**components**: non-page react components
-**context**: authentication context
-**pages**: page react components used by react router
-**util**: utility functions and graphql queries
+- **components**: non-page react components
+- **context**: authentication context
+- **pages**: page react components used by react router
+- **util**: utility functions and graphql queries
 
 ## graphql
 GraphQL models and resolvers
@@ -42,12 +42,12 @@ Utility functions including user authentication and login/register validation
 
 ## Running program
 ### Server
-Change working directory to **Bulletin**
-**development**: *npm run dev* 
-**general**: *npm run dev*
-**serving**: *npm run build*
+- Change working directory to **Bulletin**
+- **development**: *npm run dev* 
+- **general**: *npm run dev*
+- **serving**: *npm run build*
 
 ### Client:
-Change working directory to **client**
-**general/development**: *npm run start*
-**serving**: *npm run build*
+- Change working directory to **client**
+- **general/development**: *npm run start*
+- **serving**: *npm run build*
