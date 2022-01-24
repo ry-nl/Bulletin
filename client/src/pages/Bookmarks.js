@@ -6,7 +6,7 @@ import '../css/Bookmarks.css'
 import { AuthContext } from '../context/auth'
 
 export default function Bookmarks() {
-    const context = useContext(AuthContext)
+    const context = useContext(AuthContext) // const = { id, username, token }
 
     return (
         <div className='bookmarks'>

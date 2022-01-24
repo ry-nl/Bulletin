@@ -2,7 +2,6 @@
     justify-self: flex-end;
     height: 100vh;
     width: clamp(150px, 20%, 500px);
-    border-left: var(--highlight-color) 1px solid;
     background-color: var(--background-color);
 }
 

@@ -16,7 +16,7 @@ import { DELETE_POST, LIKE_POST } from '../../util/queries'
 import { AuthContext } from '../../context/auth'
 
 
-function Post({ postId, userId, userPic, username, text, image, createdOn, createdAt, likes, numLikes, comments, numComments}) {
+function Post({ postId, userId, userPic, username, text, image, createdOn, createdAt, likes, numLikes, comments, numComments }) {
     const navigate = useNavigate()
     const { user } = useContext(AuthContext)
     const [commentsOpen, setCommentsOpen] = useState(false)

@@ -13,4 +13,6 @@
     min-height: 100vh;
     width: clamp(1000px, 60%, 2500px);
     overflow: hidden;
+    border-left: var(--highlight-color) 1px solid;
+    border-right: var(--highlight-color) 1px solid;
 }
