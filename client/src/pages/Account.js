@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Navigate, useParams } from 'react-router-dom'
 import { useQuery, useMutation } from '@apollo/react-hooks'
 
@@ -8,6 +8,7 @@ import ProfileIcon from '@mui/icons-material/AccountCircle'
 import { Button, CircularProgress, Avatar } from '@mui/material'
 import Modal from '@mui/material/Modal'
 import Box from '@mui/material/Box';
+
 import Post from '../components/Post/Post'
 
 import { useForm } from '../util/hooks'
@@ -35,6 +36,7 @@ function Account() {
     const { username } = useParams()
 
     const [modalOpen, setModalOpen] = useState('')
+    const [followed, setFollowed] = useState(false)
 
     // EDIT ACCOUNT FORMS ----------------------------------
 
@@ -71,19 +73,27 @@ function Account() {
     // FOLLOW USER ----------------------------------
 
     const [followUser] = useMutation(FOLLOW_USER, {
-        variables: username
+        variables: {
+            username: username,
+            userId: ''
+        },
+        onCompleted() {
+            window.location.reload()
+        }
     })
 
-    // GET USER POSTS ----------------------------------
+    // GET USER DATA ----------------------------------
 
-    const { loadingUser, data: userData } = useQuery(GET_USER, {
+    const { loading: loadingUser, data: userData } = useQuery(GET_USER, {
         variables: {
             username: username,
             userId: ''
         }
     })
 
-    const { loadingPosts, data: postData } = useQuery(FETCH_USER_POSTS, {
+    // GET USER POSTS ----------------------------------
+
+    const { loading: loadingPosts, data: postData } = useQuery(FETCH_USER_POSTS, {
         variables: {
             quantity: 5,
             startingIndex: 0,
@@ -91,6 +101,25 @@ function Account() {
             userId: ''
         }
     })
+
+
+    // check if following (FOLLOW / UNFOLLOW text)
+    useEffect(() => {
+        if(userData) {
+            for(let i = 0; i < userData.getUser.followers.length; ++i) {
+                if(user.id === userData.getUser.followers[i].id) {
+                    setFollowed(true)
+                    return
+                }
+            }
+        }
+        setFollowed(false)
+    }, [user.id, userData])
+
+
+    function handleFollow() {
+        followUser()
+    }
 
     // RENDERING ----------------------------------
 
@@ -112,11 +141,27 @@ function Account() {
                             <div>
                                 <div className='account-header-container'>
                                     <h1 className='username'>{ userData && userData.getUser.username }</h1>
-                                    { user.username !== username && 
-                                        <p className='follow' onClick={()=>{ followUser() }}>Follow</p>    // render follow button for other accounts
+                                    { user.username !== username &&
+                                        <div className='follow-container'>
+                                            { followed ?
+                                                <p className='follow' onClick={()=>{ handleFollow() }}>Unfollow</p> :   // render follow button for other accounts
+                                                <p className='follow' onClick={()=>{ handleFollow() }}>Follow</p>   // render follow button for other accounts
+                                            }
+                                        </div>
                                     }
                                 </div>
                                 <p className='userbio'>{ userData && userData.getUser.userBio }</p>
+                            </div>
+
+                            <div className='follow-info-container'>
+                                <div>
+                                    <p>{ userData && userData.getUser.followers.length }</p>
+                                    <p>Followers</p>
+                                </div>
+                                <div>
+                                    <p>{ userData && userData.getUser.following.length }</p>
+                                    <p>Following</p>
+                                </div>
                             </div>
                             
                             { userData && (userData.getUser.id === user.id) &&      // if viewing own page display edit buttons

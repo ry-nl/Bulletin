@@ -27,6 +27,36 @@ export const GET_USER = gql`
     }
 `
 
+export const GET_FOLLOWER = gql`
+    query getFollower(
+        $userId: ID!
+        $followerId: ID!
+    ) {
+        getFollower(
+            userId: $userId
+            followerId: $followerId
+        ) {
+            id
+            username
+        }
+    }
+`
+
+export const SEARCH_USER = gql`
+    query searchUser(
+        $username: String!
+    ) {
+        searchUser(
+            username: $username
+        ) {
+            id
+            username
+            userPic
+        }
+    }
+`
+
+
 // USER MUTATIONS --------------------------------------
 
 export const REGISTER_USER = gql`
@@ -128,7 +158,7 @@ export const FETCH_USER_POSTS = gql`
 `
 
 export const FETCH_POSTS_QUERY = gql`
-    {
+    query getPosts {
         getPosts {
             id
             poster {
@@ -142,6 +172,12 @@ export const FETCH_POSTS_QUERY = gql`
             }
             likes {
                 likerId
+            }
+            comments {
+                id
+                commenterId
+                commenter
+                content
             }
             likeCount
             commentCount
@@ -193,13 +229,35 @@ export const DELETE_POST = gql`
     }
 `
 
+export const CREATE_COMMENT = gql`
+    mutation createComment(
+        $postId: ID!
+        $content: String!
+    ) {
+        createComment(
+            postId: $postId,
+            content: $content
+        ) {
+            id
+            content {
+                text
+                image
+            }
+        }
+    }
+`
+
 // FOLLOW MUTATIONS --------------------------------------
 
 export const FOLLOW_USER = gql`
     mutation follow(
-        $userId: ID!
+        $userId: ID
+        $username: String
     ) {
-        follow(userId: $userId) {
+        follow(
+            userId: $userId,
+            username: $username
+        ) {
             id
             username
         }

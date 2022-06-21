@@ -44,7 +44,7 @@ function InputBox() {
                 </div>
                 <div className='inputbox-buttons'>
                     <div className='inputbox-button-icons'>
-                        <ImageIcon className={ inputMode ? 'inputbox-button' : 'inputbox-button-active' } onClick={()=>{ setInputMode(!inputMode); console.log('hello') }} />
+                        <ImageIcon className={ inputMode ? 'inputbox-button' : 'inputbox-button-active' } onClick={()=>{ setInputMode(!inputMode) }} />
                     </div>
                     <Button type='submit' className='inputbox-submit'>Post</Button>
                 </div>

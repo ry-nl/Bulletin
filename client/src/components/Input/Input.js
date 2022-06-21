@@ -1,7 +1,18 @@
 import React from 'react'
 
-export default function Input() {
+import './Input.css'
+import { Button } from '@mui/material'
+import TextArea from 'react-textarea-autosize';
+
+import { useForm } from '../../util/hooks'
+
+
+export default function Input({ placeholder, action, handleChange, handleSubmit, data }) {
+
 	return (
-		<input placeholder='Looking for something?' type='text'></input>
+		<form className='input-form' onSubmit={ handleSubmit }>
+			<TextArea placeholder={ placeholder } type='text' name='text' maxRows={5} value={ data.text } onChange={ handleChange } />
+			<Button type='submit' className='input-submit'>{ action }</Button>
+		</form>
 	)
 }

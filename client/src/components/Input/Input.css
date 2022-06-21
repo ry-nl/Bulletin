@@ -1,0 +1,56 @@
+.input-form {
+    width: 90%;
+    padding: 10px 0;
+}
+
+.input-form > TextArea {
+    width: 100%;
+    border: none;
+
+    padding: 10px 10px;
+
+
+    border-bottom: var(--highlight-color) solid 1px;
+    background-color: var(--background-color);
+
+    resize: none;
+
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+
+    font-weight: 400;
+    font-size: 15px;
+    font-family: 'Lato', sans-serif;
+
+    color: white;
+    transition: 200ms;
+}
+
+.input-form > TextArea:hover {
+    outline: none;
+    background-color: #464646;
+    transition: 200ms;
+}
+
+.input-form > TextArea:focus {
+    outline: none;
+    background-color: #464646;
+    border-bottom: white solid 1px;
+    transition: 400ms;
+}
+
+.input-submit {
+    background-color: #6C6C6C !important;
+    border-radius: 0 !important;
+
+    margin: 0 auto !important;
+
+    color: white !important;
+    font-family: 'Lato', sans-serif !important;
+    font-weight: 300 !important;
+    text-transform: none !important;
+
+    margin-top: 10px !important;
+    height: 30px !important;
+    width: 100px !important;
+}

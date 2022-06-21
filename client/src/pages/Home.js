@@ -5,6 +5,7 @@ import { useQuery } from '@apollo/react-hooks'
 import '../css/Home.css'
 import EditIcon from '@mui/icons-material/Edit'
 import { CircularProgress, Fab } from '@mui/material'
+
 import InputBox from '../components/InputBox/InputBox'
 import Post from '../components/Post/Post'
 
@@ -38,6 +39,7 @@ function Home() {
                                     userPic={post.poster.userPic}
                                     likes={post.likes}
                                     numLikes={post.likeCount}
+                                    comments={post.comments}
                                     numComments={post.commentCount}
                                     createdAt={post.createdAt}
                                     createdOn={post.createdOn}

@@ -42,6 +42,18 @@
     white-space: pre-wrap;
 }
 
+.follow-info-container {
+    display: flex;
+}
+
+.follow-info-container > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    font-weight: 300;
+}
+
 .header-buttons {
     display: flex;
     flex-direction: column;
