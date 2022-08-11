@@ -1,6 +1,6 @@
 # Bulletin
 Social media application project using
-*HTML, CSS, JavaScript, NodeJS, ReactJS, GraphQL, MongoDB, and Apollo*
+*HTML, CSS, JavaScript, NodeJS, ExpressJS, ReactJS, GraphQL, MongoDB, and Apollo*
 
 # Directory guide
 
