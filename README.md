@@ -35,13 +35,12 @@ Contains static elements
 
 ## Installing dependencies
 - Change working directory to **Bulletin**
-- Run *npm i*
+- Run *npm i* within both **client** and **server** directories
 
 ## Running program
 ### Server
 - Change working directory to **Bulletin**
-- **development**: *npm run dev* 
-- **general**: *npm run dev*
+- **general/development**: *npm run dev* 
 - **serving**: *npm run build*
 
 ### Client:
