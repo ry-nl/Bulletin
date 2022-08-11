@@ -26,10 +26,7 @@ Mongoose schemas
 Utility functions including user authentication and login/register validation
 
 ## public
-*currently unused*
-
-## routes
-*currently unused*
+Contains static elements
 
 ## middleware
 *currently unused*
